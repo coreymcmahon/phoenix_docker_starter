@@ -68,8 +68,9 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :phoenix_docker_starter, PhoenixDockerStarter.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "phoenix_docker_starter_dev",
-  hostname: "localhost",
+  username: System.get_env("PGUSER"),
+  password: System.get_env("PGPASSWORD"),
+  database: System.get_env("PGDATABASE"),
+  hostname: System.get_env("PGHOST"),
+  port: System.get_env("PGPORT"),
   pool_size: 10

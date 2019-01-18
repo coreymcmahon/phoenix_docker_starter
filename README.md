@@ -14,6 +14,7 @@ docker-compose build
 docker-compose up
 ```
 
+---
 
 To start your Phoenix server:
 
@@ -25,4 +26,3 @@ To start your Phoenix server:
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-

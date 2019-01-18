@@ -1,5 +1,14 @@
 #!/bin/bash
 
+cd /app
+
+# Install hex
+mix local.hex --force
+mix local.rebar --force
+
+# Compile the project
+mix do compile
+
 # Wait for Postgres to be ready
 while ! pg_isready -q -h $PGHOST -p $PGPORT -U $PGUSER
 do

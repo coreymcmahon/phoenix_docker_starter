@@ -1,28 +1,31 @@
 version: '3'
 
 services:
-	phoenix:
-		build:
-			context: .
-		environment:
-			PGUSER: postgres
-			PGPASSWORD: secret
-			PGDATABASE: dbname
-			PGPORT: 5432
-			PGHOST: pgsql
-		ports:
-			- "4000:4000"
-			- "54322:5432"
-		depends:
-			- pgsql
-	db:
-		image: postgres:9.6
-		environment:
-			POSTGRES_USER: postgres
-			POSTGRES_PASSWORD: secret
-			PGDATA: /var/lib/postgresql/data/pgdata
-		restart: always
-		volumes:
-			- pgdata:/var/lib/postgresql/data
+  phoenix:
+    build:
+      context: .
+    environment:
+      PGUSER: postgres
+      PGPASSWORD: secret
+      PGDATABASE: dbname
+      PGPORT: 5432
+      PGHOST: pgsql
+    volumes:
+     - .:/app
+    working_dir: /app
+    ports:
+      - "4000:4000"
+      - "54322:5432"
+    depends_on:
+      - pgsql
+  pgsql:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 volumes:
-	pgdata
+  pgdata:
